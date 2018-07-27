@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
@@ -16,14 +17,15 @@ namespace Checklist.WebApi.Infrastructure
 
                 .Mappings(m => m.FluentMappings
 
-                    .AddFromAssemblyOf<Program>())
-                /*.Conventions.Setup(c =>
-                {
-                    c.Add(DefaultLazy.Never());  // Acabar com os virtual
-                    c.Add(DefaultCascade.All());
-                })*/
+                    .AddFromAssemblyOf<Program>()
+                    .Conventions.Setup(c =>
+                    {
+                        c.Add(DefaultLazy.Never());  // Acabar com os virtual
+                        c.Add(DefaultCascade.All());
+                    }))
+                
                 .ExposeConfiguration(cfg => new SchemaExport(cfg)
-                    .Create(true, true)
+                //    .Create(true, true)
                    )
 
                 .BuildSessionFactory();

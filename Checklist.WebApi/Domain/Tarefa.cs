@@ -5,13 +5,13 @@ namespace Checklist.WebApi.Domain
 {
     public class Tarefa
     {
-        public virtual Guid Id { get; set; }
-        public virtual string Criador { get; set; }
-        public virtual DateTime Criacao { get; set; }
+        public Guid Id { get; set; }
+        public string Criador { get; set; }
+        public DateTime Criacao { get; set; }
         
-        public virtual string Descricao { get; set; }
-        public virtual bool Concluido { get; set; }
-        public virtual Usuario Responsavel { get; set; }
+        public string Descricao { get; set; }
+        public bool Concluido { get; set; }
+        public Usuario Responsavel { get; set; }
 
         public Tarefa()
         {

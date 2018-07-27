@@ -4,8 +4,8 @@ namespace Checklist.WebApi.Domain
 {
     public class Usuario
     {
-        public virtual Guid Id { get; set; }
-        public virtual string Nome { get; set; }
+        public Guid Id { get; set; }
+        public string Nome { get; set; }
 
         public Usuario()
         {
