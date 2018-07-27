@@ -23,21 +23,21 @@ namespace Checklist.WebApi
                 using (var transaction = session.BeginTransaction())
                 {
                     var felipe = new Usuario("Felipe");
-                    /*var tarefa1 = new Tarefa("Ir no Dentista", false, felipe);
+                    var tarefa1 = new Tarefa("Ir no Dentista", false, felipe);
                     var tarefa2 = new Tarefa("Cortar o cabelo", false, felipe);
-                    var tarefa3 = new Tarefa("Estudar", true, felipe);*/
+                    var tarefa3 = new Tarefa("Estudar", true, felipe);
 
                     session.SaveOrUpdate(felipe);
-                    /*session.SaveOrUpdate(tarefa1);
+                    session.SaveOrUpdate(tarefa1);
                     session.SaveOrUpdate(tarefa2);
-                    session.SaveOrUpdate(tarefa3);*/
+                    session.SaveOrUpdate(tarefa3);
 
                     transaction.Commit();
 
                     Console.WriteLine("Usuario Criado: " + felipe.Nome + "\t");
-                    /*Console.WriteLine("Tarefa Criada Created: " + tarefa1.Descricao + "\t");
+                    Console.WriteLine("Tarefa Criada Created: " + tarefa1.Descricao + "\t");
                     Console.WriteLine("Tarefa Criada Created: " + tarefa2.Descricao + "\t");
-                    Console.WriteLine("Tarefa Criada Created: " + tarefa3.Descricao + "\t");*/
+                    Console.WriteLine("Tarefa Criada Created: " + tarefa3.Descricao + "\t");
                 }
             }
 
