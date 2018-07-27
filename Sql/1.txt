@@ -1,0 +1,29 @@
+
+    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE7D37945F119C05B]') and parent_object_id = OBJECT_ID(N'Tarefa'))
+alter table Tarefa  drop constraint FKE7D37945F119C05B
+
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'Tarefa') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table Tarefa
+
+    if exists (select * from dbo.sysobjects where id = object_id(N'Usuario') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table Usuario
+
+    create table Tarefa (
+        Id UNIQUEIDENTIFIER not null,
+       Descricao NVARCHAR(255) null,
+       Criador NVARCHAR(255) null,
+       Criacao DATETIME2 null,
+       Concluido BIT null,
+       ResponsavelId UNIQUEIDENTIFIER null,
+       primary key (Id)
+    )
+
+    create table Usuario (
+        Id UNIQUEIDENTIFIER not null,
+       Nome NVARCHAR(255) null,
+       primary key (Id)
+    )
+
+    alter table Tarefa
+        add constraint FKE7D37945F119C05B
+        foreign key (ResponsavelId)
+        references Usuario
