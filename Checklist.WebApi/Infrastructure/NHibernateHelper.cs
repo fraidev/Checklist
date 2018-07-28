@@ -21,11 +21,11 @@ namespace Checklist.WebApi.Infrastructure
                     .Conventions.Setup(c =>
                     {
                         c.Add(DefaultLazy.Never());  // Acabar com os virtual
-                        c.Add(DefaultCascade.All());
+                      //  c.Add(DefaultCascade.All());
                     }))
                 
                 .ExposeConfiguration(cfg => new SchemaExport(cfg)
-                //    .Create(true, true)
+                //.Create(true, true)
                    )
 
                 .BuildSessionFactory();

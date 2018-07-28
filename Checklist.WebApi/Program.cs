@@ -18,7 +18,7 @@ namespace Checklist.WebApi
         {
             var sessionFactory = NHibernateHelper.CreateSessionFactory();
 
-            using (var session = sessionFactory.OpenSession())
+            /*using (var session = sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
@@ -39,7 +39,7 @@ namespace Checklist.WebApi
                     Console.WriteLine("Tarefa Criada Created: " + tarefa2.Descricao + "\t");
                     Console.WriteLine("Tarefa Criada Created: " + tarefa3.Descricao + "\t");
                 }
-            }
+            }*/
 
         CreateWebHostBuilder(args).Build().Run();
         }
