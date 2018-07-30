@@ -6,18 +6,19 @@
     <form class="example-form">
       <span style="padding: 0 14px;">Usuario:</span>
       <mat-form-field class="example-full-width">
-        <input type="text" aria-label="Number" matInput  [(ngModel)]="selectedOption" [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let usuarios of usuarios" [value]="usuarios.nome">
-            {{usuarios.nome}}
+        <input type="text" aria-label="Number" matInput [(ngModel)]="selectedUsuario"  [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let usuario of usuarios" [value]="usuario">
+            {{usuario.nome}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <button (click)="getTarefarByUsuario(selectedOption)" mat-button>Add</button>
-      <button (click)="getTarefarByUsuario(selectedOption)" mat-button>Procurar</button>
-      <button (click)="getTarefarByUsuario(selectedOption)" mat-button>Remover</button>
-      <button (click)="getTarefarByUsuario(selectedOption)" mat-button>Alterar</button>
+      <button (click)="addUsuario(selectedUsuario)" mat-button>Add</button>
+      <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Procurar</button>
+      <button (click)="deleteUsuario(selectedUsuario)" mat-button>Remover</button>
+      <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Alterar</button>
+      <button (click)="getTarefas()" mat-button>All</button>
     </form>
   </mat-card>
   </mat-grid-tile>
@@ -30,8 +31,7 @@
     <input type="text" aria-label="Number" matInput  #tarefaName [formControl]="myControl" [matAutocomplete]="auto">
   </mat-form-field>
 
-  <button (click)="search(tarefaName.value)" mat-button>Add</button>
-  <button (click)="search(tarefaName.value)" mat-button>Procurar</button>
+  <button (click)="addTarefa(tarefaName.value, true, selectedUsuario)" mat-button>Add</button>
 </form>
   </mat-card>
   </mat-grid-tile>

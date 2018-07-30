@@ -1,3 +1,4 @@
+///<reference path="../services/tarefa/tarefa.ts"/>
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Tarefa} from '../services/tarefa/tarefa';
 import {TarefaService} from '../services/tarefa/tarefa.service';
@@ -13,24 +14,23 @@ import {FormControl} from '@angular/forms';
 })
 export class ContentComponent implements OnInit {
   usuarios: Usuario[];
-  editUsuarios: Usuario; // the hero currently being edited
+  editUsuarios: Usuario;
   myControl = new FormControl();
+  public selectedUsuario: Usuario;
 
   public tarefas: Tarefa[];
   public ediTarefa: Tarefa;
-  selectedOption: string;
-/*
 
-  @ViewChild(CourseContentRegisterComponent)
-  public contentComponent: CourseContentRegisterComponent;*/
 
-  // the hero currently being edited
-
-  constructor(private tarefaService: TarefaService,private usuarioService: UsuarioService) { }
+  constructor(private tarefaService: TarefaService, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.getUsuarios();
-    this.getTarefas();
+    //this.getTarefas();
+  }
+
+  pageRefresh() {
+    location.reload();
   }
 
   getUsuarios(): void {
@@ -43,7 +43,43 @@ export class ContentComponent implements OnInit {
       .subscribe(tarefas => (this.tarefas = tarefas));
   }
 
-  getTarefarByUsuario(std: string): void {
-    this.tarefas = this.tarefas.filter(tar => tar.responsavel.nome === std);
+  getTarefasByUsuario(usuario: Usuario): void {
+    this.tarefaService.getTarefasByUsuario(usuario)
+      .subscribe(tarefas => (this.tarefas = tarefas));
+  }
+
+  displayFn(user?: Usuario): string | undefined {
+    return user ? user.nome : undefined;
+  }
+
+  addUsuario(nome: string): void {
+    this.editUsuarios = undefined;
+    nome = nome.trim();
+    if (!nome) { return; }
+
+    // The server will generate the id for this new Usuario
+    const newUsuario: Usuario = { nome } as Usuario;
+    this.usuarioService.addUsuario(newUsuario)
+      .subscribe(usuario => this.usuarios.push(usuario));
+  }
+
+  deleteUsuario(usuario: Usuario): void {
+    this.usuarios = this.usuarios.filter(h => h !== usuario);
+    this.usuarioService.deleteUsuario(usuario.id).subscribe();
+    /*
+    // oops ... subscribe() is missing so nothing happens
+    this.heroesService.deleteHero(hero.id);
+    */
+  }
+
+  addTarefa(descricao: string, concluido: boolean, responsavel: Usuario): void {
+    this.ediTarefa = undefined;
+    descricao = descricao.trim();
+    if (!descricao) { return; }
+
+    // The server will generate the id for this new Usuario
+    const newTarefa: Tarefa = { descricao , concluido , responsavel } as Tarefa;
+    this.tarefaService.addTarefa(newTarefa)
+      .subscribe(tarefas => this.tarefas.push(tarefas));
   }
 }

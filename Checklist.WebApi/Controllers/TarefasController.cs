@@ -25,7 +25,20 @@ namespace Checklist.WebApi.Controllers
             }
             return tarefas;
         }
-       //TODO seach de descricao
+
+        // GET api/tarefas
+        [HttpGet("byUsuario/{id}")]
+        public ActionResult<IEnumerable<Tarefa>> GetByUsuario(Guid id)
+        {
+            List<Tarefa> tarefas;
+
+            var sessionFactory =  NHibernateHelper.CreateSessionFactory();
+            using (ISession session = sessionFactory.OpenSession())  // Open a session to conect to the database
+            {
+                tarefas = session.Query<Tarefa>().Where(x => x.Responsavel.Id == id).ToList();
+            }
+            return tarefas;
+        }
         
         // GET api/values/5
         [HttpGet("{id}")]
@@ -44,14 +57,14 @@ namespace Checklist.WebApi.Controllers
         
         // POST api/values
         [HttpPost]
-        public void Post(string nome, bool concluido, Usuario responsavel)
+        public void Post(Tarefa tarefa)
         {
             var sessionFactory =  NHibernateHelper.CreateSessionFactory();
             using (ISession session = sessionFactory.OpenSession())  // Open a session to conect to the database
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(new Tarefa(nome, concluido, responsavel));
+                    session.SaveOrUpdate(new Tarefa(tarefa.Descricao, tarefa.Concluido, tarefa.Responsavel));
                     transaction.Commit();
                 }
             }

@@ -1,10 +1,9 @@
 ///<reference path="../../../../node_modules/rxjs/internal/operators/filter.d.ts"/>
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Tarefa} from './tarefa';
 import {Usuario} from '../usuario/usuario';
-import {catchError, filter} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +19,10 @@ export class TarefaService {
   getTarefas (): Observable<Tarefa[]> {
     return this.http.get<Tarefa[]>(this.checklistUrl);
   }
-  searchTarefas(term: string): Observable<Tarefa[]> {
-    term = term.trim();
-
-    // Add safe, URL encoded search parameter if there is a search term
-    const options = term ?
-      { params: new HttpParams().set('descricao', term) } : {};
-
-    return this.http.get<Tarefa[]>(this.checklistUrl, options);
+  getTarefasByUsuario (usuario: Usuario): Observable<Tarefa[]> {
+    return this.http.get<Tarefa[]>(this.checklistUrl + '/byUsuario/' + usuario.id);
+  }
+  addTarefa (tarefa: Tarefa): Observable<Tarefa> {
+    return this.http.post<Tarefa>(this.checklistUrl, tarefa);
   }
 }

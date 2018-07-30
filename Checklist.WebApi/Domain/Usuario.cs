@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Checklist.WebApi.Domain
 {
@@ -6,6 +7,7 @@ namespace Checklist.WebApi.Domain
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
+        public IList<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
 
         public Usuario()
         {

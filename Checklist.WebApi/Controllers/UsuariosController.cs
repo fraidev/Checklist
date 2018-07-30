@@ -28,7 +28,7 @@ namespace Checklist.WebApi.Controllers
             return usuarios;
         }
         
-        // GET api/values/5
+        // GET api/usuarios/5
         [HttpGet("{id}")]
         public ActionResult<Usuario> Get(Guid id)
         {
@@ -43,22 +43,22 @@ namespace Checklist.WebApi.Controllers
             return usuario.First(x => x.Id == id);
         }
         
-        // POST api/values
+        // POST api/usuarios
         [HttpPost]
-        public void Post(string nome)
+        public void Post(Usuario usuario)
         {
             var sessionFactory =  NHibernateHelper.CreateSessionFactory();
             using (ISession session = sessionFactory.OpenSession())  // Open a session to conect to the database
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.SaveOrUpdate(new Usuario(nome));
+                    session.SaveOrUpdate(usuario);
                     transaction.Commit();
                 }
             }
         }
 
-        // PUT api/values/5
+        // PUT api/usuarios/5
         [HttpPut("{id}")]
         public void Put(Usuario usuario)
         {
@@ -73,7 +73,7 @@ namespace Checklist.WebApi.Controllers
             }
         }
 
-        // DELETE api/values/5
+        // DELETE api/usuarios/5
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
