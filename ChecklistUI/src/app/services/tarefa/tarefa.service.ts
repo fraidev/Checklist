@@ -25,4 +25,8 @@ export class TarefaService {
   addTarefa (tarefa: Tarefa): Observable<Tarefa> {
     return this.http.post<Tarefa>(this.checklistUrl, tarefa);
   }
+  deleteTarefa (id: string): Observable<{}> {
+    const url = `${this.checklistUrl}/${id}`;
+    return this.http.delete(url);
+  }
 }

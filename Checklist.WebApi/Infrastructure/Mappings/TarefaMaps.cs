@@ -15,7 +15,9 @@ namespace Checklist.WebApi.Infrastructure.Mappings
             Map(x => x.Criador);
             Map(x => x.Criacao);
             Map(x => x.Concluido);
-            References(x => x.Responsavel, "ResponsavelId");
+            
+            References(x => x.Responsavel, "ResponsavelId").Not.Nullable();
+            
         }
     }
 }

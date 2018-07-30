@@ -1,6 +1,6 @@
 
 
-<mat-grid-list cols="2"  rowHeight="4:1" class="tarefas">
+<mat-grid-list cols="3"  rowHeight="3:1" class="tarefas">
   <mat-grid-tile>
   <mat-card class="example-card">
     <form class="example-form">
@@ -17,10 +17,16 @@
       <button (click)="addUsuario(selectedUsuario)" mat-button>Add</button>
       <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Procurar</button>
       <button (click)="deleteUsuario(selectedUsuario)" mat-button>Remover</button>
-      <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Alterar</button>
-      <button (click)="getTarefas()" mat-button>All</button>
+      <button (click)="updateUsuario(selectedUsuario)" mat-button>Alterar</button>
     </form>
   </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-card class="example-card">
+  <button (click)="getTarefas()" mat-button>Todos</button>
+      <button (click)="limpar()" mat-button>Limpar</button>
+    </mat-card>
   </mat-grid-tile>
 
   <mat-grid-tile>
@@ -28,7 +34,7 @@
 <form class="example-form">
   <span style="padding: 0 14px;">Tarefa:</span>
   <mat-form-field class="example-full-width">
-    <input type="text" aria-label="Number" matInput  #tarefaName [formControl]="myControl" [matAutocomplete]="auto">
+    <input type="text" aria-label="Number" matInput #tarefaName >
   </mat-form-field>
 
   <button (click)="addTarefa(tarefaName.value, true, selectedUsuario)" mat-button>Add</button>
@@ -38,8 +44,8 @@
 </mat-grid-list>
 
 
-  <mat-grid-list cols="4"  rowHeight="2:1" class="tarefas">
-  <mat-grid-tile *ngFor="let tarefa of tarefas" >
+  <mat-grid-list cols="4"  rowHeight="2:1" class="tarefas" >
+  <mat-grid-tile *ngFor="let tarefa of tarefas" [(ngModel)]="selectedTarefa">
     <mat-card class="example-card">
       <mat-card-header>
         <mat-card-title>{{tarefa.criador}}</mat-card-title>
@@ -54,9 +60,9 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>EDIT</button>
-        <button mat-button>DELETE</button>
-        <button mat-button>COMPLETE</button>
+        <button mat-button>Editar</button>
+        <button (click)="deleteTarefa(tarefa)" mat-button>Remover</button>
+        <button mat-button>Completar</button>
       </mat-card-actions>
     </mat-card>
     </mat-grid-tile>

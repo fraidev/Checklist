@@ -20,8 +20,11 @@ export class UsuarioService {
   addUsuario (usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.checklistUrl, usuario);
   }
-  deleteUsuario (id: number): Observable<{}> {
+  deleteUsuario (id: string): Observable<{}> {
     const url = `${this.checklistUrl}/${id}`;
     return this.http.delete(url);
+  }
+  updateUsuario (usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(this.checklistUrl, usuario);
   }
 }

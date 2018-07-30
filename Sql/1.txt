@@ -1,6 +1,5 @@
-
-    if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FKE7D37945F119C05B]') and parent_object_id = OBJECT_ID(N'Tarefa'))
-alter table Tarefa  drop constraint FKE7D37945F119C05B
+if exists (select 1 from sys.objects where object_id = OBJECT_ID(N'[FK10C4E01098263147]') and parent_object_id = OBJECT_ID(N'Tarefa'))
+alter table Tarefa  drop constraint FK10C4E01098263147
 
 
     if exists (select * from dbo.sysobjects where id = object_id(N'Tarefa') and OBJECTPROPERTY(id, N'IsUserTable') = 1) drop table Tarefa
@@ -24,6 +23,7 @@ alter table Tarefa  drop constraint FKE7D37945F119C05B
     )
 
     alter table Tarefa
-        add constraint FKE7D37945F119C05B
+        add constraint FK10C4E01098263147
         foreign key (ResponsavelId)
         references Usuario
+

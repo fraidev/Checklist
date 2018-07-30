@@ -25,7 +25,7 @@ namespace Checklist.WebApi.Infrastructure
                     }))
                 
                 .ExposeConfiguration(cfg => new SchemaExport(cfg)
-                //.Create(true, true)
+              // .Create(true, true)
                    )
 
                 .BuildSessionFactory();

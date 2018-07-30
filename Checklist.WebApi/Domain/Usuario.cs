@@ -7,7 +7,7 @@ namespace Checklist.WebApi.Domain
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
-        public IList<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
+        //public IList<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
 
         public Usuario()
         {
