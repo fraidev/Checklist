@@ -1,0 +1,46 @@
+<label>Tarefa:
+  <input #tarefaName />
+</label>
+<button (click)="search(tarefaName.value)">
+  Procurar
+</button>
+
+
+<form class="example-form"><span style="padding: 0 14px;">Usuario:</span>
+  <mat-form-field class="example-full-width">
+    <input type="text" aria-label="Number" matInput  [(ngModel)]="selectedOption" [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let usuarios of usuarios" [value]="usuarios.nome">
+        {{usuarios.nome}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button (click)="getTarefarByUsuario(selectedOption)">
+    Bom
+  </button>
+</form>
+
+
+  <mat-grid-list cols="4"  rowHeight="2:1" class="tarefas">
+    <mat-grid-tile *ngFor="let tarefa of tarefas" >
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{tarefa.criador}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{tarefa.descricao}}
+          {{tarefa.criacao}}
+          {{tarefa.descricao}}
+          {{tarefa.concluido}}
+          {{tarefa.responsavel.nome}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>EDIT</button>
+        <button mat-button>DELETE</button>
+        <button mat-button>COMPLETE</button>
+      </mat-card-actions>
+    </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

@@ -25,6 +25,7 @@ namespace Checklist.WebApi.Controllers
             }
             return tarefas;
         }
+       //TODO seach de descricao
         
         // GET api/values/5
         [HttpGet("{id}")]

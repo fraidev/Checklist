@@ -4,15 +4,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatIconModule, MatAutocompleteModule,
-  MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import {
+  MatToolbarModule, MatIconModule, MatAutocompleteModule,
+  MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatButtonModule, MatGridListModule
+} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
-
-
+import { ContentComponent } from './content/content.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContentComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -25,20 +27,10 @@ import { HeaderComponent } from './header/header.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
-  ],
-  exports: [
-    MatToolbarModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatButtonModule,
+    MatGridListModule
   ],
   entryComponents: [AppComponent],
   providers: [],
