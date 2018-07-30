@@ -30,16 +30,19 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.getUsuarios();
+    this.getTarefas();
   }
 
   getUsuarios(): void {
     this.usuarioService.getUsuarios()
       .subscribe(usuarios => this.usuarios = usuarios);
   }
+
   getTarefas(): void {
     this.tarefaService.getTarefas()
       .subscribe(tarefas => (this.tarefas = tarefas));
   }
+
   getTarefarByUsuario(std: string): void {
     this.tarefas = this.tarefas.filter(tar => tar.responsavel.nome === std);
   }
