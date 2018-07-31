@@ -17,8 +17,13 @@
       <button (click)="addUsuario(selectedUsuario)" mat-button>Add</button>
       <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Procurar</button>
       <button (click)="deleteUsuario(selectedUsuario)" mat-button>Remover</button>
+      <button (click)="abrirAlterador()" mat-button>Alterar</button>
     </form>
   </mat-card>
+    <mat-card *ngIf="alterarUsuario" class="example-card">
+    <input type="text" aria-label="Number" #alterar>
+      <button (click)="updateUsuario(selectedUsuario, alterar.value)" mat-button>Alterar</button>
+    </mat-card>
   </mat-grid-tile>
 
   <mat-grid-tile>
@@ -60,7 +65,7 @@
       <mat-card-actions>
         <button mat-button>Editar</button>
         <button (click)="deleteTarefa(tarefa)" mat-button>Remover</button>
-        <button (click)="updateTarefa(tarefa)" mat-button>Completar</button>
+        <button (click)="updateConcluirTarefa(tarefa)" mat-button>Completar</button>
       </mat-card-actions>
     </mat-card>
     </mat-grid-tile>

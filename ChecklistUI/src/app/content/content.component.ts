@@ -22,6 +22,8 @@ export class ContentComponent implements OnInit {
   public editTarefa: Tarefa;
   public selectedTarefa: Usuario;
 
+  public alterarUsuario: boolean = false;
+
 
   constructor(private tarefaService: TarefaService, private usuarioService: UsuarioService) { }
 
@@ -29,8 +31,8 @@ export class ContentComponent implements OnInit {
     this.getUsuarios();
   }
 
-  pageRefresh() {
-    location.reload();
+  abrirAlterador():void{
+    this.alterarUsuario ? this.alterarUsuario = false : this.alterarUsuario = true;
   }
 
   limpar():void{
@@ -89,7 +91,7 @@ export class ContentComponent implements OnInit {
     this.tarefaService.deleteTarefa(tarefa.id).subscribe();
   }
 
-  updateTarefa(tarefa: Tarefa) {
+  updateConcluirTarefa(tarefa: Tarefa) {
     tarefa.concluido = tarefa.concluido = true;
     this.editTarefa = tarefa;
     if (this.editTarefa) {
@@ -100,6 +102,19 @@ export class ContentComponent implements OnInit {
           if (ix > -1) { this.tarefas[ix] = tarefa; }
         });
       this.editTarefa = undefined;
+    }
+  }
+  updateUsuario(usuario: Usuario, newNome: string) {
+    usuario.nome = newNome;
+    this.editUsuarios = usuario;
+    if (this.editUsuarios) {
+      this.usuarioService.updateUsuario(this.editUsuarios)
+        .subscribe(usuarios => {
+          // replace the hero in the heroes list with update from server
+          const ix = usuarios ? this.usuarios.findIndex(h => h.id === usuarios.id) : -1;
+          if (ix > -1) { this.usuarios[ix] = usuario; }
+        });
+      this.editUsuarios = undefined;
     }
   }
 }

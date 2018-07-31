@@ -96,7 +96,10 @@ namespace Checklist.WebApi.Controllers
                 {
                     var tarefa = session.Query<Tarefa>().ToList();
                     var l = tarefa.First(x => x.Id == id);
-                    session.Delete(l);
+
+                    l.Responsavel.Tarefas.Remove(l);
+                    session.Save(l.Responsavel);
+                    
                     transaction.Commit();
                 }
             }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Usuario} from './usuario';
+import {Tarefa} from '../tarefa/tarefa';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class UsuarioService {
     return this.http.delete(url);
   }
   updateUsuario (usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(this.checklistUrl, usuario);
+    const url = `${this.checklistUrl}/${usuario.id}`;
+    return this.http.put<Usuario>(url, usuario);
   }
 }
