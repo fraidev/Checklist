@@ -17,7 +17,6 @@
       <button (click)="addUsuario(selectedUsuario)" mat-button>Add</button>
       <button (click)="getTarefasByUsuario(selectedUsuario)" mat-button>Procurar</button>
       <button (click)="deleteUsuario(selectedUsuario)" mat-button>Remover</button>
-      <button (click)="updateUsuario(selectedUsuario)" mat-button>Alterar</button>
     </form>
   </mat-card>
   </mat-grid-tile>
@@ -37,33 +36,33 @@
     <input type="text" aria-label="Number" matInput #tarefaName >
   </mat-form-field>
 
-  <button (click)="addTarefa(tarefaName.value, true, selectedUsuario)" mat-button>Add</button>
+  <button (click)="addTarefa(tarefaName.value, false, selectedUsuario)" mat-button>Add</button>
 </form>
   </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
 
 
+<div class="mat-app-background basic-container">
   <mat-grid-list cols="4"  rowHeight="2:1" class="tarefas" >
-  <mat-grid-tile *ngFor="let tarefa of tarefas" [(ngModel)]="selectedTarefa">
+  <mat-grid-tile *ngFor="let tarefa of tarefas">
     <mat-card class="example-card">
       <mat-card-header>
         <mat-card-title>{{tarefa.criador}}</mat-card-title>
+        <span *ngIf="tarefa.concluido" style="color: red"> Concluido </span>
+        <mat-card-subtitle>{{tarefa.criacao}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>
+        <span>
           {{tarefa.descricao}}
-          {{tarefa.criacao}}
-          {{tarefa.descricao}}
-          {{tarefa.concluido}}
-          {{tarefa.responsavel.nome}}
-        </p>
+        </span>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>Editar</button>
         <button (click)="deleteTarefa(tarefa)" mat-button>Remover</button>
-        <button mat-button>Completar</button>
+        <button (click)="updateTarefa(tarefa)" mat-button>Completar</button>
       </mat-card-actions>
     </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+</div>

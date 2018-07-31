@@ -72,14 +72,14 @@ namespace Checklist.WebApi.Controllers
         
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(string nome, bool concluido, Usuario responsavel)
+        public void Put(Tarefa tarefa)
         {
             var sessionFactory =  NHibernateHelper.CreateSessionFactory();
             using (ISession session = sessionFactory.OpenSession())  // Open a session to conect to the database
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Update(new Tarefa(nome, concluido, responsavel));
+                    session.Update(tarefa);
                     transaction.Commit();
                 }
             }

@@ -27,7 +27,6 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.getUsuarios();
-    //this.getTarefas();
   }
 
   pageRefresh() {
@@ -39,6 +38,7 @@ export class ContentComponent implements OnInit {
   }
 
   getUsuarios(): void {
+    this.editUsuarios = undefined;
     this.usuarioService.getUsuarios()
       .subscribe(usuarios => this.usuarios = usuarios);
   }
@@ -82,29 +82,24 @@ export class ContentComponent implements OnInit {
   deleteUsuario(usuario: Usuario): void {
     this.usuarios = this.usuarios.filter(h => h !== usuario);
     this.usuarioService.deleteUsuario(usuario.id).subscribe();
-    /*
-    // oops ... subscribe() is missing so nothing happens
-    this.heroesService.deleteHero(hero.id);
-    */
   }
 
   deleteTarefa(tarefa: Tarefa): void {
     this.tarefas = this.tarefas.filter(h => h !== tarefa);
     this.tarefaService.deleteTarefa(tarefa.id).subscribe();
-    /*
-    // oops ... subscribe() is missing so nothing happens
-    this.heroesService.deleteHero(hero.id);
-    */
   }
-  updateUsuario(tarefa: Tarefa) {
-    if (this.editUsuarios) {
-      this.usuarioService.updateUsuario(this.editUsuarios)
-        .subscribe(usuario => {
+
+  updateTarefa(tarefa: Tarefa) {
+    tarefa.concluido = tarefa.concluido = true
+    this.editTarefa = tarefa;
+    if (this.editTarefa) {
+      this.tarefaService.updateTarefa(this.editTarefa)
+        .subscribe(tarefas => {
           // replace the hero in the heroes list with update from server
-          const ix = usuario ? this.usuarios.findIndex(h => h.id === usuario.id) : -1;
-          if (ix > -1) { this.usuarios[ix] = usuario; }
+          const ix = tarefas ? this.tarefas.findIndex(h => h.id === tarefas.id) : -1;
+          if (ix > -1) { this.tarefas[ix] = tarefa; }
         });
-      this.editUsuarios = undefined;
+      this.editTarefa = undefined;
     }
   }
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatToolbarModule, MatIconModule, MatAutocompleteModule,
-  MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatButtonModule, MatGridListModule
+  MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatButtonModule, MatGridListModule, MatCheckboxModule
 } from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
@@ -30,7 +30,8 @@ import { ContentComponent } from './content/content.component';
     MatSelectModule,
     MatCardModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
   entryComponents: [AppComponent],
   providers: [],
