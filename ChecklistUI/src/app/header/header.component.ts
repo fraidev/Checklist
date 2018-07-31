@@ -1,8 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import { UsuarioService } from '../services/usuario/usuario.service';
-import { Usuario } from '../services/usuario/usuario';
-import {ContentComponent} from '../content/content.component';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',

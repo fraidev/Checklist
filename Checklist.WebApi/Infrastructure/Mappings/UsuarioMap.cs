@@ -13,10 +13,11 @@ namespace Checklist.WebApi.Infrastructure.Mappings
             
             Map(x => x.Nome);
 
-            /*HasMany(x => x.Tarefas)
+            HasMany(x => x.Tarefas)
                 .BatchSize(50)
                 .Cascade.AllDeleteOrphan()
-                .Fetch.Subselect();*/
+                .KeyColumn("ResponsavelId")
+                .Fetch.Subselect();
         }
     }
 }

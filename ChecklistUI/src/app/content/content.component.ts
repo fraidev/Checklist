@@ -90,7 +90,7 @@ export class ContentComponent implements OnInit {
   }
 
   updateTarefa(tarefa: Tarefa) {
-    tarefa.concluido = tarefa.concluido = true
+    tarefa.concluido = tarefa.concluido = true;
     this.editTarefa = tarefa;
     if (this.editTarefa) {
       this.tarefaService.updateTarefa(this.editTarefa)
