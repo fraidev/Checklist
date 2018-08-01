@@ -50,11 +50,11 @@
 
 <div class="mat-app-background basic-container">
   <mat-grid-list cols="4"  rowHeight="2:1" class="tarefas" >
-  <mat-grid-tile *ngFor="let tarefa of tarefas">
-    <mat-card class="example-card">
+  <mat-grid-tile *ngFor="let tarefa of tarefas" >
+    <mat-card *ngIf="tarefa" class="example-card">
       <mat-card-header>
         <mat-card-title>{{tarefa.criador}}</mat-card-title>
-        <span *ngIf="tarefa.concluido" style="color: red"> Concluido </span>
+        <span [hidden]="!tarefa.concluido" style="color: red"> Concluido </span>
         <mat-card-subtitle>{{tarefa.criacao}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
